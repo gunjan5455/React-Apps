@@ -1,0 +1,10 @@
+.item{
+    margin: 0;
+    padding: 0;
+}
+.listItems{
+    list-style: none; 
+    padding: 20px;
+    font-size: 22px;
+    color: red;
+}

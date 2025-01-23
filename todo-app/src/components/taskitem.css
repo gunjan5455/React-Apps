@@ -1,0 +1,23 @@
+/* .task-cont {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+} */
+ul {
+  display: flex;
+  flex-direction: column;
+}
+.task-item {
+  display: flex;
+  margin: 10px;
+}
+.task-li {
+  list-style: none;
+  margin-right: 10px;
+}
+.task-btn {
+  margin: 0;
+  height: 37px;
+  width: 100px;
+}

@@ -1,0 +1,18 @@
+.container {
+  padding: 30px;
+  margin: 20px;
+  display: flex;
+}
+input {
+  margin: 10px;
+  height: 30px;
+  width: 300px;
+  border-radius: 10px;
+}
+button {
+  margin: 10px;
+  height: 35px;
+  width: 120px;
+  background-color: antiquewhite;
+  border-radius: 10px;
+}

@@ -1,0 +1,27 @@
+.counter {
+  display: flex;
+}
+.btn {
+  height: 40px;
+  width: 90px;
+  margin: 20px;
+  padding: 10px;
+  background-color: skyblue;
+}
+.btn:hover {
+  background-color: lightblue;
+}
+.cont {
+  flex: 1;
+  height: 100%;
+  transition: flex 0.5s ease;
+  cursor: pointer;
+  background-color: lightgreen;
+  border-radius: 11px;
+  margin: 20px;
+  padding: 10px;
+}
+.cont:hover {
+  flex: 3;
+  background-color: aqua;
+}
