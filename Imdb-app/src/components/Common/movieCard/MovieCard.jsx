@@ -1,5 +1,11 @@
+import { useContext } from "react";
+import { WatchListContext } from "../../../App";
+
 const MovieCard = (props) => {
-  const { movieobj, addToWatchlist, removeFromWatchlist, watchlist } = props;
+  const { movieobj } = props;
+  const watchlistContextValue = useContext(WatchListContext);
+  const { watchlist, addToWatchlist, removeFromWatchlist } =
+    watchlistContextValue;
   let moviePoster = movieobj.backdrop_path;
   let movietitle = movieobj.title;
   const BannerImage = `url(https://image.tmdb.org/t/p/original${moviePoster})`;

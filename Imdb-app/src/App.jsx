@@ -3,9 +3,13 @@ import Home from "./Pages/home/Home";
 import Navbar from "./components/navbar/Navbar";
 import WatchList from "./Pages/watchlist/WatchList";
 import { BrowserRouter, Routes, Route } from "react-router";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+export const WatchListContext = React.createContext();
 const App = () => {
-  const [watchlist, setWatchlist] = useState([]);
+  const [watchlist, setWatchlist] = useState(setToLocalStorage());
+  useEffect(() => {
+    localStorage.setItem("watchlist", JSON.stringify(watchlist));
+  }, [watchlist]);
   function addToWatchlist(movie) {
     console.log("added", movie);
     setWatchlist([...watchlist, movie]);
@@ -17,24 +21,26 @@ const App = () => {
     });
     setWatchlist(newWatchlist);
   }
+  function setToLocalStorage() {
+    const watchlistOnStorage = JSON.parse(localStorage.getItem("watchlist"));
+    if (watchlistOnStorage == null) {
+      return [];
+    }
+    return watchlistOnStorage;
+  }
   return (
     <div className="">
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Home
-                addToWatchlist={addToWatchlist}
-                removeFromWatchlist={removeFromWatchlist}
-                watchlist={watchlist}
-              />
-            }
-          />
-          <Route path="/watchlist" element={<WatchList />} />
-        </Routes>
-      </BrowserRouter>
+      <WatchListContext.Provider
+        value={{ watchlist, addToWatchlist, removeFromWatchlist }}
+      >
+        <BrowserRouter>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/watchlist" element={<WatchList />} />
+          </Routes>
+        </BrowserRouter>
+      </WatchListContext.Provider>
     </div>
   );
 };

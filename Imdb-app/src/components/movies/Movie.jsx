@@ -4,8 +4,7 @@ import axios from "axios";
 import MovieCard from "../Common/movieCard/MovieCard";
 import Pagination from "../../components/pagination/Pagination";
 
-const Movies = (props) => {
-  const { addToWatchlist, removeFromWatchlist, watchlist } = props;
+const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
@@ -38,14 +37,7 @@ const Movies = (props) => {
         <h3>Trending Movies</h3>
         <div className="flex flex-wrap gap-8 justify-center align-center mt-5">
           {movies.map((movieobj) => {
-            return (
-              <MovieCard
-                movieobj={movieobj}
-                addToWatchlist={addToWatchlist}
-                removeFromWatchlist={removeFromWatchlist}
-                watchlist={watchlist}
-              />
-            );
+            return <MovieCard movieobj={movieobj} />;
           })}
         </div>
       </div>
