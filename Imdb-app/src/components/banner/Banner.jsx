@@ -25,7 +25,7 @@ const Banner = () => {
       className="h-[75vh] bg-cover bg-center flex items-end justify-center"
       style={{ backgroundImage: `url(${bannerImage})` }}
     >
-      <div className="text-white text-2xl">{movieTitle}</div>
+      <div className="text-white text-xl">{movieTitle.toUpperCase()}</div>
     </div>
   );
 };

@@ -67,7 +67,7 @@ const WatchList = () => {
               key={index}
               onClick={() => handleGenreSearch(genre)}
             >
-              {genre}
+              {genre.toString().toUpperCase()}
             </div>
           );
         })}
@@ -75,19 +75,19 @@ const WatchList = () => {
       <div className="my-10">
         <input
           onChange={handleSearch}
-          value={searchValue}
+          value={searchValue.toUpperCase()}
           className="p-2 h-[3rem] w-[18rem] border-gray-900 bg-gray-400 rounded-lg text-white text-bold placeholder-white"
-          placeholder="Search Movies"
+          placeholder="SEARCH MOVIES"
         />
       </div>
       <div>
         <table className="w-full my-10">
           <thead>
             <tr>
-              <th>name</th>
-              <th>Rating</th>
-              <th>Popularity</th>
-              <th>genre</th>
+              <th>NAME</th>
+              <th>RATING</th>
+              <th>POPULARITY</th>
+              <th>GENRE</th>
             </tr>
           </thead>
           <tbody className="my-20">
@@ -100,16 +100,22 @@ const WatchList = () => {
                       src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                       alt=""
                     />
-                    <div className="px-7 font-medium">{movie.title}</div>
+                    <div className="px-7 font-medium">
+                      {movie.title.toUpperCase()}
+                    </div>
                   </td>
                   <td>{movie.vote_average}</td>
                   <td>{movie.popularity}</td>
-                  <td>{genreIdMappings[movie.genre_ids[0]]}</td>
+                  <td>
+                    {genreIdMappings[movie.genre_ids[0]]
+                      .toString()
+                      .toUpperCase()}
+                  </td>
                   <td
                     className="text-red-500 cursor-pointer"
                     onClick={() => removeFromWatchlist(movie)}
                   >
-                    delete
+                    DELETE
                   </td>
                 </tr>
               );

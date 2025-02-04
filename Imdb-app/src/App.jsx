@@ -1,9 +1,14 @@
 import "./app.css";
 import Home from "./Pages/home/Home";
 import Navbar from "./components/navbar/Navbar";
-import WatchList from "./Pages/watchlist/WatchList";
+// import WatchList from "./Pages/watchlist/WatchList";
 import { BrowserRouter, Routes, Route } from "react-router";
-import React, { useEffect, useState } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
+import Counter from "./components/counter/Counter";
+import { Provider } from "react-redux";
+import { store } from "./redux/store/store";
+import TodoList from "./Pages/todoList/TodoList";
+const WatchList = lazy(() => import("./Pages/watchlist/WatchList"));
 export const WatchListContext = React.createContext();
 const App = () => {
   const [watchlist, setWatchlist] = useState(setToLocalStorage());
@@ -30,17 +35,28 @@ const App = () => {
   }
   return (
     <div className="">
-      <WatchListContext.Provider
-        value={{ watchlist, addToWatchlist, removeFromWatchlist }}
-      >
-        <BrowserRouter>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/watchlist" element={<WatchList />} />
-          </Routes>
-        </BrowserRouter>
-      </WatchListContext.Provider>
+      <Provider store={store}>
+        <WatchListContext.Provider
+          value={{ watchlist, addToWatchlist, removeFromWatchlist }}
+        >
+          <BrowserRouter>
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route
+                path="/watchlist"
+                element={
+                  <Suspense fallback={<div>Loading...</div>}>
+                    <WatchList />
+                  </Suspense>
+                }
+              />
+              <Route path="/counter" element={<Counter />} />
+              <Route path="/todo" element={<TodoList />} />
+            </Routes>
+          </BrowserRouter>
+        </WatchListContext.Provider>
+      </Provider>
     </div>
   );
 };

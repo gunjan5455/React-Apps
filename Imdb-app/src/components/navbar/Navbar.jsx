@@ -6,11 +6,11 @@ const Navbar = () => {
       <Link to="/">
         <img src={Logo} className="w-[50px]" />
       </Link>
-      <Link to="/" className="text-blue-700 text-3xl font-bold">
-        <p>Home</p>
+      <Link to="/" className="text-blue-700 text-2xl font-bold">
+        <p>HOME</p>
       </Link>
-      <Link to="/watchlist" className="text-blue-700 text-3xl">
-        <p>Watchlist</p>
+      <Link to="/watchlist" className="text-blue-700 text-2xl">
+        <p>WATCHLIST</p>
       </Link>
     </div>
   );

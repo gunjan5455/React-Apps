@@ -7,7 +7,7 @@ const MovieCard = (props) => {
   const { watchlist, addToWatchlist, removeFromWatchlist } =
     watchlistContextValue;
   let moviePoster = movieobj.backdrop_path;
-  let movietitle = movieobj.title;
+  let movietitle = movieobj.title.toUpperCase();
   const BannerImage = `url(https://image.tmdb.org/t/p/original${moviePoster})`;
   let isNovieinWatchlist = watchlist.find((watchlistMovie) => {
     return watchlistMovie.id == movieobj.id;
@@ -33,7 +33,7 @@ const MovieCard = (props) => {
         </div>
       )}
 
-      <div className="text-xl text-white bg-gray-900 bg-opacity-60 text-center w-full">
+      <div className="text-sm text-white bg-gray-900 bg-opacity-60 text-center w-full">
         {movietitle}
       </div>
     </div>
