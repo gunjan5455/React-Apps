@@ -43,14 +43,7 @@ const App = () => {
             <Navbar />
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route
-                path="/watchlist"
-                element={
-                  <Suspense fallback={<div>Loading...</div>}>
-                    <WatchList />
-                  </Suspense>
-                }
-              />
+              <Route path="/watchlist" element={<WatchList />} />
               <Route path="/counter" element={<Counter />} />
               <Route path="/todo" element={<TodoList />} />
             </Routes>
