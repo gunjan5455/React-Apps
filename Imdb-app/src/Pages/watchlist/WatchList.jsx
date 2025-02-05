@@ -67,7 +67,7 @@ const WatchList = () => {
               key={index}
               onClick={() => handleGenreSearch(genre)}
             >
-              {genre.toString().toUpperCase()}
+              {genre}
             </div>
           );
         })}
@@ -75,7 +75,7 @@ const WatchList = () => {
       <div className="my-10">
         <input
           onChange={handleSearch}
-          value={searchValue.toUpperCase()}
+          value={searchValue}
           className="p-2 h-[3rem] w-[18rem] border-gray-900 bg-gray-400 rounded-lg text-white text-bold placeholder-white"
           placeholder="SEARCH MOVIES"
         />
@@ -100,17 +100,11 @@ const WatchList = () => {
                       src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                       alt=""
                     />
-                    <div className="px-7 font-medium">
-                      {movie.title.toUpperCase()}
-                    </div>
+                    <div className="px-7 font-medium">{movie.title}</div>
                   </td>
                   <td>{movie.vote_average}</td>
                   <td>{movie.popularity}</td>
-                  <td>
-                    {genreIdMappings[movie.genre_ids[0]]
-                      .toString()
-                      .toUpperCase()}
-                  </td>
+                  <td>{genreIdMappings[movie.genre_ids[0]]}</td>
                   <td
                     className="text-red-500 cursor-pointer"
                     onClick={() => removeFromWatchlist(movie)}
