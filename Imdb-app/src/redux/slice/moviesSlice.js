@@ -1,13 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
+console.log(import.meta.env);
 export const fetchMovies = createAsyncThunk(
   "movies/fetchMovies",
   async (currentPage) => {
     const res = await fetch(
-      `https://api.themoviedb.org/3/trending/movie/day?api_key=a271441f00ab65804138eacbcccc5fea&page=${currentPage}`
+      `${import.meta.env.VITE_MOVIES_BACKEND_URL}${currentPage}`
     );
     if (!res.ok) {
-      throw new Error(res.statusText);
+      throw new Error("Failed");
     }
     return res.json();
   }
@@ -17,7 +17,7 @@ const movieSlice = createSlice({
   name: "movies",
   initialState: {
     movies: [],
-    loding: null,
+    loading: null,
     currentPage: 1,
   },
   reducers: {
@@ -26,19 +26,21 @@ const movieSlice = createSlice({
     },
     nextclick: (state) => {
       state.currentPage += 1;
+      console.log("Next clicked, currentPage:", state.currentPage);
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchMovies.pending, (state) => {
-        state.loding = true;
+        state.loading = true;
       })
       .addCase(fetchMovies.fulfilled, (state, action) => {
-        state.loding = false;
+        state.loading = false;
         state.movies = action.payload.results;
       })
-      .addCase(fetchMovies.rejected, () => {
-        console.log("rejected");
+      .addCase(fetchMovies.rejected, (state, action) => {
+        state.loading = false;
+        console.log("Fetch failed:", action.error);
       });
   },
 });
