@@ -4,7 +4,7 @@ import Navbar from "./components/navbar/Navbar";
 import WatchList from "./Pages/watchlist/WatchList";
 import { BrowserRouter, Routes, Route } from "react-router";
 import React, { useEffect, useState } from "react";
-import Counter from "./components/counter/Counter";
+import Counter from "./Pages/counter/Counter";
 import { Provider } from "react-redux";
 import { store } from "./redux/store/store";
 import TodoList from "./Pages/todoList/TodoList";
