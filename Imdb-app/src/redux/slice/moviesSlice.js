@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-console.log(import.meta.env);
 export const fetchMovies = createAsyncThunk(
   "movies/fetchMovies",
   async (currentPage) => {
